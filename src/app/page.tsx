@@ -5,6 +5,7 @@ import { encodeFunctionData, erc20Abi, parseUnits } from "viem";
 import { useConnect, useAccount, useDisconnect, useSwitchChain } from "wagmi";
 import { useSendCalls } from "wagmi/experimental";
 import { baseSepolia } from "wagmi/chains";
+import BackgroundMusic from "../components/BackgroundMusic";
 import Image from "next/image";
 
 interface DataRequest {
@@ -2110,6 +2111,9 @@ export default function Page() {
           </div>
         </div>
       )}
+      
+      {/* Background Music Player */}
+      <BackgroundMusic autoPlay={false} />
       </div>
     </div>
   );

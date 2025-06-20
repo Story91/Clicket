@@ -1,0 +1,9 @@
+This folder is ready for your music files!
+
+Add these files to enable background music:
+- electronic-beat.mp3
+- rock-energy.mp3  
+- pop-beat.mp3
+- ambient-chill.mp3
+
+Check README.md for instructions on where to find free music. 
