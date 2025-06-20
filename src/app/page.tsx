@@ -1908,14 +1908,21 @@ export default function Page() {
       {/* Shopping Cart Modal */}
       {showCart && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
-            {/* Cart Header */}
-            <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
+          <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Cart Header - Sticky */}
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 sticky top-0 z-10 rounded-t-2xl">
               <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-white">🛒 Shopping Cart</h2>
+                <div>
+                  <h2 className="text-2xl font-bold text-white">🛒 Shopping Cart</h2>
+                  {cart.length > 3 && (
+                    <p className="text-purple-100 text-sm mt-1">
+                      Scroll down to checkout • {getTotalItems()} items • {getTotalPrice()} USDC
+                    </p>
+                  )}
+                </div>
                 <button
                   onClick={() => setShowCart(false)}
-                  className="text-white hover:text-gray-200 text-2xl"
+                  className="text-white hover:text-gray-200 text-2xl transition-colors"
                 >
                   ✕
                 </button>
@@ -1923,7 +1930,7 @@ export default function Page() {
             </div>
 
             {/* Cart Content */}
-            <div className="p-6 overflow-y-auto max-h-[60vh]">
+            <div className="p-6">
               {cart.length === 0 ? (
                 <div className="text-center py-8">
                   <span className="text-6xl mb-4 block">🛒</span>
@@ -1931,7 +1938,12 @@ export default function Page() {
                   <p className="text-gray-600">Add some concert tickets to get started!</p>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-4 mb-6">
+                  {cart.length > 3 && (
+                    <div className="text-center text-sm text-gray-500 mb-4">
+                      📋 {cart.length} concerts in cart • Scroll down for checkout
+                    </div>
+                  )}
                   {cart.map((item) => (
                     <div key={item.id} className="flex items-center space-x-4 bg-gray-50 rounded-lg p-4">
                       <div className="relative w-16 h-16 rounded-lg overflow-hidden">
@@ -1980,9 +1992,9 @@ export default function Page() {
               )}
             </div>
 
-            {/* Cart Footer */}
+            {/* Cart Footer - Checkout Section */}
             {cart.length > 0 && (
-              <div className="border-t border-gray-200 p-6">
+              <div className="border-t-2 border-purple-200 bg-gray-50/50 p-6 rounded-b-2xl">
                 {/* Required Information Selection */}
                 <div className="mb-6">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Required Information</h3>
